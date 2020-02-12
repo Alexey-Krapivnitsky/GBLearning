@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a4175703-318f-430c-85a9-7b79c08082c9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../less1_1.py" beforeDir="false" />
-    </list>
+    <list default="true" id="65e55d49-6e93-4b54-8017-775b6ba4ca36" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +19,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../lesson2/Alexey_Krapivnitskiy" />
   </component>
   <component name="RunManager">
     <configuration name="less1_1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -77,6 +75,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="676" y="332" key="FileChooserDialogImpl" timestamp="1581156356252">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="676" y="332" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1581156356252" />
     <state width="1283" height="176" key="GridCell.Tab.0.bottom" timestamp="1580889341873">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
