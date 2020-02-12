@@ -4,3 +4,4 @@ tmp_as_list = user_string.split()
 
 for number, word in enumerate(tmp_as_list, 1):
     print(number, word[:10])
+
