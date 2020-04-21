@@ -1,23 +1,23 @@
-def print_statistics(arr):
-    mediana = None
-    number = None
-    if not len(arr):
-        print('Список пустой или не предоставлен')
-    else:
-        arr = sorted(arr)
-        number = len(arr)
-        number1 = (number - 1) // 2
-        if number % 2 == 0:
-            mediana = (arr[number1] + arr[number1 + 1]) / 2
-        else:
-            mediana = arr[number1]
+def random_finder(number=1):
+    computer_number = 50
+    tries = 1
+    low = 1
+    high = 100
+    # Цикл отгадывания
+    while computer_number != number:
+        if computer_number > number:
+            high = computer_number
+# Задаем загаданное число верхней границей интервала
+# Продолжаем делить полученный интервал наполовину.
+            computer_number = computer_number - ((high-low)//2)
+            print(computer_number, number, (high-low))
+        elif computer_number < number:
+            low = computer_number
+# Задаем загаданное число нижней границей интервала
+            computer_number = computer_number + ((high-low)//2)
+            print(computer_number, number)
+        tries += 1
+    return tries
 
-        print(f'Длина списка - {number}, Среднее - {sum(arr) / number}, '
-              f'Минимальное значение - {min(arr)}, Максимальное значение - {max(arr)}, '
-              f'Медиана списка - {mediana}')
 
-
-print_statistics([5, 3, 4, 8])
-print_statistics([5, 4, 3, 8, 9])
-print_statistics([22])
-print_statistics([])
+random_finder()

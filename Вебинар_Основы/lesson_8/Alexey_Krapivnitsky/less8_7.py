@@ -12,16 +12,12 @@ class ComplexNumber:
     def __add__(self, other):
         result_real = self.real + other.real
         result_imaginary = self.imaginary + other.imaginary
-        result = f'{result_real} + {result_imaginary}i' if result_imaginary > 0\
-            else f'{result_real} - {abs(result_imaginary)}i'
-        return result
+        return ComplexNumber(result_real, result_imaginary)
 
     def __mul__(self, other):
         result_real = self.real * other.real - self.imaginary * other.imaginary
         result_imaginary = self.real*other.imaginary + self.imaginary * other.real
-        result = f'{result_real} + {result_imaginary}i' if result_imaginary > 0 \
-            else f'{result_real} - {abs(result_imaginary)}i'
-        return result
+        return ComplexNumber(result_real, result_imaginary)
 
 
 if __name__ == '__main__':
