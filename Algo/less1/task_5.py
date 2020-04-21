@@ -10,3 +10,25 @@
 В обоих случаях программа должна вывести корректный результат.
 В обоих случаях он 24, но никак не -24
 """
+
+while True:
+    try:
+        CHAR_1 = input('Символ № 1: ')
+        if CHAR_1.isalpha() and len(CHAR_1) == 1:
+            CHAR_1 = ord(CHAR_1) - 96
+        else:
+            raise ValueError
+        CHAR_2 = input('Символ № 2: ')
+        if CHAR_2.isalpha() and len(CHAR_2) == 1:
+            CHAR_2 = ord(CHAR_2) - 96
+        else:
+            raise ValueError
+        break
+    except ValueError:
+        print('Вы ввели недопустимые параметры, попробуйте снова\n')
+
+SYMBOL_DIFF = CHAR_2 - CHAR_1 - 1 if CHAR_1 < CHAR_2 else CHAR_1 - CHAR_2
+
+print(f'Символ "{chr(CHAR_1 + 96)}" - {CHAR_1}-я буква латинского алфавита')
+print(f'Символ "{chr(CHAR_2 + 96)}" - {CHAR_2}-я буква латинского алфавита')
+print(f'Между данными символами находится {SYMBOL_DIFF} букафф')

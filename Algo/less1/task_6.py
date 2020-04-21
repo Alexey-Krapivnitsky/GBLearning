@@ -8,3 +8,14 @@
 
 Подсказка: используйте ф-ции chr() и ord()
 """
+
+while True:
+    try:
+        CHAR_NUMBER = int(input('Введите номер буквы: ')) + 96
+        break
+    except ValueError:
+        print('Вы ввели недопустимые параметры, попробуйте снова\n')
+
+SYMBOL_VAL = chr(CHAR_NUMBER)
+
+print(f'Введенному номеру соответствует буква "{SYMBOL_VAL}"')
