@@ -16,3 +16,30 @@
 Он просто позволяет протестировать условие в одной строке,
 заменяя многострочное if-else, делая код компактным.
 """
+
+while True:
+    try:
+        USER_YEAR = input('Введите год: ')
+        if len(USER_YEAR) == 4 and int(USER_YEAR) > 0:
+            USER_YEAR = int(USER_YEAR)
+            break
+        else:
+            raise ValueError
+    except ValueError:
+        print('Вы ввели недопустимые параметры, попробуйте снова\n')
+
+# Variant 1
+
+if not USER_YEAR % 4:
+    if USER_YEAR % 100:
+        print(f'{USER_YEAR} - високосный год')
+    elif not USER_YEAR % 400:
+        print(f'{USER_YEAR} - високосный год')
+else:
+    print(f'{USER_YEAR} - не високосный год')
+
+# Variant 2
+
+print(f'{USER_YEAR} - високосный год') if (not USER_YEAR % 4 and USER_YEAR % 100) or \
+                                          not USER_YEAR % 400 \
+                                          else print(f'{USER_YEAR} - не високосный год')

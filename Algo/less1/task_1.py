@@ -13,3 +13,24 @@
 Подсказка: для получения отдельных цифр числа используйте арифм. операции
 и НЕ ИСПОЛЬЗУЙТЕ операции с массивами
 """
+
+while True:
+    try:
+        USER_NUMB = input('Введите трехзначное число: ')
+        if len(USER_NUMB) == 3:
+            USER_NUMB = int(USER_NUMB)
+            print(f'\nВы ввели число {USER_NUMB}')
+            break
+        else:
+            print('Число не трехзначное!')
+    except ValueError:
+        print('Введенное значение не является числом!')
+
+NUMB_1 = USER_NUMB // 100
+NUMB_2 = (USER_NUMB // 10) % 10
+NUMB_3 = USER_NUMB % 10
+
+print(f'Сумма чисел введенного числа ({NUMB_1} + {NUMB_2} + {NUMB_3}) равна'
+      f' {NUMB_1 + NUMB_2 + NUMB_3}')
+print(f'Произведение чисел введенного числа ({NUMB_1} * {NUMB_2} * {NUMB_3}) '
+      f'равно {NUMB_1 * NUMB_2 * NUMB_3}')
