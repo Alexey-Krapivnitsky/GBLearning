@@ -31,3 +31,47 @@
 Вы вместо трехзначного числа ввели строку (((. Исправьтесь
 Введите операцию (+, -, *, / или 0 для выхода):
 """
+
+# Сделал расширенный калькулятор с сохранением результата предыдущих вычислений до введения '0'
+
+
+def calculator(operation='Start', num_1=None):
+    result = 0
+    start = True if operation == 'Start' else False
+    operation = input('Введите операцию (+, -, *, / или 0 для выхода: ... ')
+    if operation == '0':
+        return
+    if operation not in '+-*/0':
+        print('Операция не распознана, попробуйте снова')
+        calculator()
+    else:
+        try:
+            if start:
+                num_1 = float(input('Введите первое число: '))
+                num_2 = float(input('Введите второе число: '))
+            else:
+                num_2 = float(input('Введите число: '))
+        except ValueError:
+            print('Вы ввели не число. Попытайтесь еще раз.')
+            calculator()
+        else:
+            if operation == '+':
+                result = num_1 + num_2
+            elif operation == '-':
+                result = num_1 - num_2
+            elif operation == '*':
+                result = num_1 * num_2
+            elif operation == '/':
+                try:
+                    result = num_1 / num_2
+                except ZeroDivisionError:
+                    result = num_1
+                    print('На ноль делить нельзя!')
+
+            if result:
+                print(f'Результат вычисления: {result}')
+            calculator(operation, result)
+
+
+if __name__ == '__main__':
+    calculator()

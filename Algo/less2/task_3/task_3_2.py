@@ -12,3 +12,18 @@
 Введите число, которое требуется перевернуть: 123
 Перевернутое число: 321
 """
+
+# Вводимое число захардкорил, так как оно в рекурсии не участвует
+# и новых знаний оформление ввода не принесет
+
+
+def skin_walker(user_num, result_num=0):
+    if user_num <= 0:
+        print(f'Перевернутое число - {result_num}')
+        return
+    result_num = (result_num + user_num % 10 / 10) * 10
+    skin_walker(int((user_num - user_num % 10) / 10), int(result_num))
+
+
+if __name__ == '__main__':
+    skin_walker(3486)
