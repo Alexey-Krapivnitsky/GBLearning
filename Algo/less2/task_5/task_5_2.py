@@ -15,3 +15,25 @@
 112 - p 113 - q 114 - r 115 - s 116 - t 117 - u 118 - v 119 - w 120 - x 121 - y
 122 - z 123 - { 124 - | 125 - } 126 - ~ 127 - 
 """
+
+# В рекурсивном вызове передаю три параметра, чтобы можно было задать
+# любой диапазон выводимых символов. Для поставленной задачи
+# параметр stop можно не передавать. Два примера вызова -
+# для поставленной задачи и вывода английского алфавита.
+
+
+def ascii_symbols(symbol_count=0, start=32, stop=128):
+    if start == stop:
+        return
+    print(f'{start} - {chr(start)}', end=' ')
+    start += 1
+    symbol_count += 1
+    if symbol_count % 10 == 0:
+        print()
+    ascii_symbols(symbol_count, start, stop)
+
+
+if __name__ == '__main__':
+    ascii_symbols()
+    print('\n')
+    ascii_symbols(0, 97, 123)
