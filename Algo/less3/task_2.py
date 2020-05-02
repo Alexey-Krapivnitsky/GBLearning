@@ -10,3 +10,10 @@
 Пример:
 Исходный массив: [8, 3, 15, 6, 4, 2], результат: [0, 3, 4, 5]
 """
+
+from random import sample
+
+
+START_ARRAY = sample(range(100), 10)
+print(f'Начальный массив: {START_ARRAY}\n'
+      f'Итоговый массив: {[START_ARRAY.index(elem) for elem in START_ARRAY if not elem % 2]}')

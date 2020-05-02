@@ -36,3 +36,25 @@
 [3, 3, 3, 3, 12]
 [3, 3, 3, 3, 12]
 """
+ROW_COUNT = 0
+COLUMN_COUNT = 0
+USER_ARRAY = []
+
+print('Заполните матрицу целыми числами')
+
+while ROW_COUNT < 5:
+    COLUMN_COUNT = 0
+    ROW_ARRAY = []
+    print(f'{ROW_COUNT + 1}-я строка')
+    while COLUMN_COUNT < 4:
+        try:
+            ROW_ARRAY.append(int(input()))
+            COLUMN_COUNT += 1
+        except ValueError:
+            print('Введенное значение не является числом')
+    ROW_ARRAY.append(sum(ROW_ARRAY))
+    USER_ARRAY.append(ROW_ARRAY)
+    ROW_COUNT += 1
+
+for elem in USER_ARRAY:
+    print(elem)
