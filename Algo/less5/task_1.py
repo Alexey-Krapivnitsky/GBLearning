@@ -25,3 +25,40 @@
 
 Предприятия, с прибылью ниже среднего значения: Копыта
 """
+from collections import Counter
+from statistics import mean
+
+while True:
+    try:
+        company_count = int(input('Введите количество предприятий: '))
+        break
+    except ValueError:
+        print('Введенное значение не является числом!')
+
+company_rating = Counter()
+
+for i in range(1, company_count + 1):
+    company_name = input(f'Введите название предприятия № {i}: ')
+    while True:
+        try:
+            quarter_profit = input('Введите прибыль предприятия за каждый квартал через пробел: ').split()
+            if len(quarter_profit) < 4:
+                raise ValueError
+            company_profit = [int(elem) for elem in quarter_profit]
+            break
+        except ValueError:
+            print('Вы подали доход не за все отчетные периоды или предоставлили неверные данные!')
+    for elem in company_profit:
+        company_rating[company_name] += elem
+
+company_avg_profit = mean(company_rating.values())
+
+print(f'Средняя годовая прибыль всех предприятий: {company_avg_profit}')
+
+lower_profit, upper_profit = [], []
+
+for key, val in company_rating.items():
+    lower_profit.append(key) if val < company_avg_profit else upper_profit.append(key)
+
+print(f'Предприятия с прибылью выше среднего значения: {" ".join(upper_profit)}')
+print(f'Предприятия с прибылью ниже среднего значения: {" ".join(lower_profit)}')
