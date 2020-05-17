@@ -17,3 +17,9 @@ for i in range(len(USER_STRING)):
         subs_set.add(hashlib.sha1(USER_STRING[i:j].encode('utf-8')).hexdigest())
 
 print("Количество различных подстрок в этой строке:", len(subs_set))
+
+"""
+Введите строку из маленьких латинских букв: papa
+Строка papa имеет длину 4 сиволов.
+Количество различных подстрок в этой строке: 6
+"""
