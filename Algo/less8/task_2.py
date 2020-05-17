@@ -1,66 +1,76 @@
 """
-2. Отсортируйте по возрастанию методом слияния одномерный вещественный массив,
-заданный случайными числами на промежутке [0; 50). Выведите на экран исходный
-и отсортированный массивы.
-
-Пример:
-Введите число элементов: 5
-Исходный - [46.11436617832828, 41.62921998361278, 18.45859540989644, 12.128870723745806, 8.025098788570562]
-Отсортированный - [8.025098788570562, 12.128870723745806, 18.45859540989644, 41.62921998361278, 46.11436617832828]
+2. Закодируйте любую строку из трех слов по алгоритму Хаффмана.
 """
-import random
-import timeit
+import heapq
+from collections import Counter
+from collections import namedtuple
 
 
-def merge_sort(user_arr):
-    if len(user_arr) == 1:
-        return
-    mid_point = len(user_arr) // 2
-    left_arr = user_arr[:mid_point]
-    right_arr = user_arr[mid_point:]
-
-    merge_sort(left_arr)
-    merge_sort(right_arr)
-
-    left_index, right_index, scratch_index = 0, 0, 0
-    while left_index < len(left_arr) and right_index < len(right_arr):
-        if left_arr[left_index] < right_arr[right_index]:
-            user_arr[scratch_index] = left_arr[left_index]
-            left_index += 1
-        else:
-            user_arr[scratch_index] = right_arr[right_index]
-            right_index += 1
-        scratch_index += 1
-
-    for i in range(left_index, len(left_arr)):
-        user_arr[scratch_index] = left_arr[i]
-        scratch_index += 1
-
-    for i in range(right_index,len(right_arr)):
-        user_arr[scratch_index] = right_arr[i]
-        scratch_index += 1
-
-    return user_arr
+class Node(namedtuple('Node', ['left', 'right'])):
+    def walk(self, code, acc):
+        self.left.walk(code, acc + '0')
+        self.right.walk(code, acc + '1')
 
 
-USER_ARR = [50 * random.random() for _ in range(10)]
+class Leaf(namedtuple('Leaf', ['char'])):
+    def walk(self, code, acc):
+        code[self.char] = acc or "0"
 
-print(USER_ARR)
-print(merge_sort(USER_ARR))
 
-print(timeit.timeit("merge_sort(USER_ARR)",
-                    setup="from __main__ import merge_sort, USER_ARR", number=1000))
+def huffman_encode(s):
+    h = []
+    for ch, freq in Counter(s).items():
+        h.append((freq, len(h), Leaf(ch)))
+    heapq.heapify(h)
+    count = len(h)
+    while len(h) > 1:
+        freq1, _count1, left = heapq.heappop(h)
+        freq2, _count2, right = heapq.heappop(h)
+        heapq.heappush(h, (freq1 + freq2, count, Node(left, right)))
+        count += 1
+    code = {}
+    if h:
+        [(_freq, _count, root)] = h
+        root.walk(code, "")
+    return code
 
+
+def huffman_decode(encoded, code):
+    sx = []
+    enc_ch = ''
+    for ch in encoded:
+        enc_ch += ch
+        for dec_ch in code:
+            if code.get(dec_ch) == enc_ch:
+                sx.append(dec_ch)
+                enc_ch = ''
+                break
+    return ''.join(sx)
+
+
+def main():
+    s = input('Введите строку, которую необходимо закодировать: ')
+    code = huffman_encode(s)
+    encoded = ''.join(code[ch] for ch in s)
+    print(f'В строке {len(code)} уникальных символов, каждому символу соответствует код: ')
+    for ch in sorted(code):
+        print(f"'{ch}' - {code[ch]}")
+    print(f'Закодированная строка, длиной {len(encoded)} знаков: {encoded}.')
+    print(f'Декодирование: {huffman_decode(encoded, code)}')
+
+
+main()
 
 """
-Исходный список:
-[17.884394638850537, 7.244612750981555, 0.469983819750891, 31.453743881089647, 8.920325109717314]
-На выходе:
-[0.469983819750891, 7.244612750981555, 8.920325109717314, 17.884394638850537, 31.453743881089647]
-Время выполнения:
-0.009848799999999998
-Время выполнения для 1000 элементов:
-4.1451395
-По сравнению с пузырьковой сортировкой для 1000 элементов временной показатель не очень хороший.
-(Для пузырьковой в среднем 0.32781420000000006 сек.)
+Введите строку, которую необходимо закодировать: мама мыла раму
+В строке 7 уникальных символов, каждому символу соответствует код: 
+' ' - 110
+'а' - 10
+'л' - 1111
+'м' - 01
+'р' - 000
+'у' - 001
+'ы' - 1110
+Закодированная строка, длиной 36 знаков: 011001101100111101111101100001001001.
+Декодирование: мама мыла раму
 """
